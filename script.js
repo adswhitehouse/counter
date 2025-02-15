@@ -1,9 +1,25 @@
 let numberPara = document.querySelector(".jsNumberPara");
-let decreaseBtn = document.querySelector(".jsDecreaseBtn");
-let resetBtn = document.querySelector(".jsResetBtn");
-let increaseBtn = document.querySelector(".jsIncreaseBtn");
 
 let counter = 0;
+
+let buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.classList.contains("jsDecreaseBtn")) {
+      counter--;
+      numberPara.textContent = counter;
+      counterColor();
+    } else if (button.classList.contains("jsIncreaseBtn")) {
+      counter++;
+      numberPara.textContent = counter;
+      counterColor();
+    } else {
+      counter = 0;
+      numberPara.textContent = counter;
+      counterColor();
+    }
+  });
+});
 
 function counterColor() {
   if (counter > 0) {
@@ -14,21 +30,3 @@ function counterColor() {
     numberPara.style.color = "#000";
   }
 }
-
-increaseBtn.addEventListener("click", () => {
-  counter++;
-  numberPara.textContent = counter;
-  counterColor();
-});
-
-decreaseBtn.addEventListener("click", () => {
-  counter--;
-  numberPara.textContent = counter;
-  counterColor();
-});
-
-resetBtn.addEventListener("click", () => {
-  counter = 0;
-  numberPara.textContent = counter;
-  counterColor();
-});
